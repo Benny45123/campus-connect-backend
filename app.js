@@ -9,7 +9,7 @@ const {authenticateToken}=require('./services/Authentication');
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({credentials:true,origin:`http://localhost:5173`}));
+app.use(cors({credentials:true,origin:[`campus-connect-i4hy.vercel.app`,`campus-connect-i4hy-git-main-beazawada-bennyhinns-projects.vercel.app`,`campus-connect-i4hy-9dcv2udm1-beazawada-bennyhinns-projects.vercel.app`]}));
 mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("Connected to MongoDB");
 }).catch((err)=>{
