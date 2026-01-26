@@ -1,0 +1,14 @@
+const express=require('express');
+const {postArticle}=require('../controllers/postArticle');
+const {uploadImage}=require('../controllers/uploadImage');
+const {authenticateToken}=require('../services/Authentication');
+const {findArticle}=require('../controllers/findArticle');
+const {findSingleArticle}=require('../controllers/findSingleArticle');
+const multer=require('multer');
+const router=express.Router();
+const upload=multer({storage:multer.memoryStorage()});
+router.post('/article/post',authenticateToken,postArticle);
+router.post('/article/upload-image',upload.single("image"),uploadImage);
+router.get('/article/search',findArticle);
+router.get('/article/:slug',findSingleArticle);
+module.exports=router;
