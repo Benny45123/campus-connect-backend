@@ -9,7 +9,7 @@ const {authenticateToken}=require('./services/Authentication');
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:[`campus-connect-i4hy.vercel.app`,`campus-connect-i4hy-git-main-beazawada-bennyhinns-projects.vercel.app`,`campus-connect-i4hy-9dcv2udm1-beazawada-bennyhinns-projects.vercel.app`],
+app.use(cors({origin:[`https://campus-connect-i4hy.vercel.app`,`https://campus-connect-i4hy-git-main-beazawada-bennyhinns-projects.vercel.app`,`https://campus-connect-i4hy-9dcv2udm1-beazawada-bennyhinns-projects.vercel.app`],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
