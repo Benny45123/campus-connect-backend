@@ -33,7 +33,7 @@ const Login=async (req,res)=>{
             return res.status(400).json({message:"Invalid roll number/email or password"});
         }
         const token=jwt.sign({userId:user._id,userRollNo:user.rollNo,userEmail:user.email,userName:user.name},SECRET_KEY,{expiresIn:'1d'});
-        res.cookie('token',token,{httpOnly:true,sameSite:'Lax',maxAge:24*60*60*1000});
+        res.cookie('token',token,{httpOnly:true,sameSite:'none',maxAge:24*60*60*1000,secure:true});
         res.status(200).json({message:"Login successful",rollNo:user.rollNo,email:user.email,name:user.name});
 
     }
