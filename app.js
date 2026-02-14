@@ -10,7 +10,11 @@ const {getSavedArticles}=require('./controllers/socialFeatures');
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({credentials:true,origin:`http://localhost:5173`}));
+app.use(cors({origin:[`https://campus-connect-i4hy.vercel.app`,`https://campus-connect-i4hy-git-main-beazawada-bennyhinns-projects.vercel.app`,`https://campus-connect-i4hy-9dcv2udm1-beazawada-bennyhinns-projects.vercel.app`],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("Connected to MongoDB");
 }).catch((err)=>{
@@ -23,8 +27,8 @@ app.use(authenticateToken);
 app.post('/api/logout',(req,res)=>{
     res.clearCookie('token',{
         httpOnly:true,
-        sameSite:"lax",
-        // secure:true,
+        sameSite:"none",
+        secure:true,
     });
     res.status(200).json({message:"Logout successful"});
 })
