@@ -6,7 +6,7 @@ const findArticle = async (req, res) => {
         const limit = parseInt(req.query.limit) || 5;
         const keyword = req.query.q || '';
         const tagFilter = req.query.tag || '';
-        const sortType = req.query.sort || 'newest';
+        const sortType = req.query.sort || 'popular';
 
         let sortOptions = {
             'newest': { createdAt: -1 },
