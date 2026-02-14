@@ -57,9 +57,6 @@ const articleSchema=new mongoose.Schema({
         type: Number,
         default:0
     },
-    datePublished:{type:Date,
-    default:Date.now()
-    }
 
 },{timestamps:true});
 const Article=mongoose.model('Article',articleSchema);
