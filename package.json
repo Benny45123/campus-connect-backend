@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test":"jest"
+    "test":"jest",
+    "build" : "echo \"Error: no build script specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
