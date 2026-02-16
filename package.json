@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test":"jest"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +27,8 @@
     "rake-js": "^0.1.1",
     "slugify": "^1.6.6",
     "streamifier": "^0.1.1"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
   }
 }

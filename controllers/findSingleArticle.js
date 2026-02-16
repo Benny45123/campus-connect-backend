@@ -1,4 +1,5 @@
 const {Article} = require('../models/articleSchema');
+const User = require('../models/userSchema');
 
 const findSingleArticle = async(req,res)=>{
     try{
@@ -7,7 +8,15 @@ const findSingleArticle = async(req,res)=>{
         if (!article){
             return  res.status(404).json({message:"Article not found"});
         }
-        res.status(200).json(article);
+        let hasSaved=false;
+        if(req.user){
+            const userId=req.user.userId;
+            const user=await User.findById(userId);
+            if(user){
+                hasSaved=user.savedArticles.some(id=>id.equals(article._id));
+            }
+        }
+        res.status(200).json({article,hasSaved});
     }
     catch(error){
         console.error("Error finding single article:",error);
