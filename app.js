@@ -7,6 +7,7 @@ const dotenv=require('dotenv');
 const articleRoutes=require('./routes/articleRoutes');
 const {authenticateToken}=require('./services/Authentication');
 const {getSavedArticles}=require('./controllers/socialFeatures');
+const rateLimit=require('express-rate-limit');
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
@@ -21,7 +22,15 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.error("Error connecting to MongoDB:",err);
 });
 const authRoutes=require('./routes/authRoutes');
-app.use('/api/auth',authRoutes);
+
+const authLimiter=rateLimit({
+    windowMs:30*60*1000, // 30 minutes
+    max:10, // limit each IP to 10 requests per windowMs
+    message:{message:"Too many authentication attempts from this IP, please try again after 30 minutes"}
+});
+
+
+app.use('/api/auth',authLimiter,authRoutes);
 app.use(authenticateToken);
 // console.log("Authentication middleware applied to all routes below this line.");
 app.post('/api/logout',(req,res)=>{

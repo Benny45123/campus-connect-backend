@@ -3,7 +3,7 @@ const User = require('../models/userSchema');
 const findArticle = async (req, res) => {
     try {
         const page = parseInt(req.query.page) - 1 || 0;
-        const limit = parseInt(req.query.limit) || 5;
+        const limit = parseInt(req.query.limit) || 10;
         const keyword = req.query.q || '';
         const tagFilter = req.query.tag || '';
         const sortType = req.query.sort || 'popular';
@@ -14,10 +14,9 @@ const findArticle = async (req, res) => {
             'popular': { claps: -1, createdAt: -1 }
         }[sortType] || { createdAt: -1 };
 
-        // 1. Build the Dynamic Query
         let query = { status: 'published' };
 
-        // 2. Add Keyword Search (if keyword exists)
+        //  Add Keyword Search (if keyword exists)
         if (keyword.trim() !== '') {
             query.$or = [
                 { title: { $regex: keyword, $options: 'i' } },
@@ -28,17 +27,17 @@ const findArticle = async (req, res) => {
             ];
         }
 
-        // 3. Add Tag Filter (if tag exists)
+        //  Add Tag Filter (if tag exists)
         if (tagFilter.trim() !== '') {
             query.tags = tagFilter.toLowerCase();
         }
 
-        // 4. Validate that we aren't just fetching everything (Optional)
+        //  Validate that we aren't just fetching everything (Optional)
         if (!keyword && !tagFilter) {
             return res.status(400).json({ message: "Provide a search keyword or tag" });
         }
 
-        // 5. Execute Query
+        //  Execute Query
         const [articles, totalArticles] = await Promise.all([
             Article.find(query)
                 .select('title slug coverImageUrl tags readTime claps createdAt author datePublished authorName')
