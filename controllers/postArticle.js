@@ -1,6 +1,7 @@
 const {Article}=require('../models/articleSchema');
 const slugify=require('slugify');
 const {generateTags}=require('../utils/generateTags');
+const redisClient=require('../config/redis');
 const postArticle=async (req,res)=>{
     try{
         const {title,content,coverImageUrl=null,tags=null,status}=req.body;
@@ -34,6 +35,18 @@ const postArticle=async (req,res)=>{
             status,
             readTime
         });
+        if (status==='published'){
+            try{
+                const keys=await redisClient.keys('articles:*');
+                if(keys.length>0){
+                    await redisClient.del(keys);
+                    console.log(`Invalidated ${keys.length} cache entries after posting article`);
+                }
+            }
+            catch(err){
+                console.error("Error invalidating cache after posting article:",err);
+            }
+        }
         res.status(201).json({message:"Article posted successfully",article});
     }
     catch(error){
