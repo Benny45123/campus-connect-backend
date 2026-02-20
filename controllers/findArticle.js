@@ -1,5 +1,5 @@
 const { Article } = require('../models/articleSchema');
-const User = require('../models/userSchema');
+const redisClient = require('../config/redis');
 const findArticle = async (req, res) => {
     try {
         const page = parseInt(req.query.page) - 1 || 0;
@@ -16,6 +16,15 @@ const findArticle = async (req, res) => {
 
         let query = { status: 'published' };
 
+        const cacheKey = `articles:${keyword}:${tagFilter}:${sortType}:page${page + 1}:limit${limit}`;
+        //  Check Redis Cache
+        const cachedData = await redisClient.get(cacheKey);
+        if (cachedData) {
+            console.log("Serving from cache");
+            return res.status(200).json(JSON.parse(cachedData));
+        }
+
+
         //  Add Keyword Search (if keyword exists)
         if (keyword.trim() !== '') {
             query.$or = [
@@ -23,7 +32,9 @@ const findArticle = async (req, res) => {
                 { tags: { $regex: keyword, $options: 'i' } },
                 { slug: { $regex: keyword, $options: 'i' } },
                 // Correct way to search inside the "content" block array:
-                { "content.data.text": { $regex: keyword, $options: 'i' } }
+                { "content.data.text": { $regex: keyword, $options: 'i' } },
+                //author name search
+                { authorName: { $regex: keyword, $options: 'i' } }
             ];
         }
 
@@ -48,14 +59,21 @@ const findArticle = async (req, res) => {
                 .lean(),
             Article.countDocuments(query)
         ]);
-        
-        res.status(200).json({
-            page: page + 1,
-            limit,
-            totalArticles,
-            totalPages: Math.ceil(totalArticles / limit),
-            articles // This will always be an Array []
-        });
+        const response = {
+                page: page + 1,
+                limit,
+                totalArticles,
+                totalPages: Math.ceil(totalArticles / limit),
+                articles
+            };
+        //  Cache the response in Redis for 10 minutes
+        try {
+            await redisClient.setEx(cacheKey, 600, JSON.stringify(response));
+        }
+        catch (cacheError) {
+            console.error("Error caching articles in Redis:", cacheError);
+        }
+        res.status(200).json(response);
 
     } catch (error) {
         console.error("Error finding article:", error);

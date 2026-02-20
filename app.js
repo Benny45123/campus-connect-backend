@@ -8,6 +8,7 @@ const articleRoutes=require('./routes/articleRoutes');
 const {authenticateToken}=require('./services/Authentication');
 const {getSavedArticles}=require('./controllers/socialFeatures');
 const rateLimit=require('express-rate-limit');
+require('./config/redis');
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
@@ -29,6 +30,7 @@ const authLimiter=rateLimit({
     message:{message:"Too many authentication attempts from this IP, please try again after 30 minutes"}
 });
 
+server.set('trust proxy', 1); // ensure only the user is blocked not ip
 
 app.use('/api/auth',authLimiter,authRoutes);
 app.use(authenticateToken);
