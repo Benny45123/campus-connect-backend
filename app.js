@@ -30,7 +30,7 @@ const authLimiter=rateLimit({
     message:{message:"Too many authentication attempts from this IP, please try again after 30 minutes"}
 });
 
-server.set('trust proxy', 1); // ensure only the user is blocked not ip
+app.set('trust proxy', 1); // ensure only the user is blocked not ip
 
 app.use('/api/auth',authLimiter,authRoutes);
 app.use(authenticateToken);
