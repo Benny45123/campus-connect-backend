@@ -24,15 +24,11 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 });
 const authRoutes=require('./routes/authRoutes');
 
-const authLimiter=rateLimit({
-    windowMs:30*60*1000, // 30 minutes
-    max:10, // limit each IP to 10 requests per windowMs
-    message:{message:"Too many authentication attempts from this IP, please try again after 30 minutes"}
-});
+
 
 app.set('trust proxy', 1); // ensure only the user is blocked not ip
 
-app.use('/api/auth',authLimiter,authRoutes);
+app.use('/api/auth',authRoutes);
 app.use(authenticateToken);
 // console.log("Authentication middleware applied to all routes below this line.");
 app.post('/api/logout',(req,res)=>{
