@@ -8,6 +8,7 @@ const {getUserArticles}=require('../controllers/UserArticles');
 const {clapArticle,toggleSavedArticle}=require('../controllers/socialFeatures');
 const multer=require('multer');
 const rateLimit=require('express-rate-limit');
+const { deleteArticle } = require('../controllers/deleteArticle');
 const router=express.Router();
 const upload=multer({storage:multer.memoryStorage()});
 
@@ -24,4 +25,5 @@ router.get('/article/:slug',findSingleArticle);
 router.post('/article/:slug/clap',clapArticle);
 router.get('/article/user/articles',getUserArticles);
 router.post('/article/:slug/save',toggleSavedArticle);
+router.delete('/article/delete/:id',deleteArticle);
 module.exports=router;
