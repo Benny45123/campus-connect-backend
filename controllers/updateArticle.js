@@ -36,8 +36,8 @@ const updateArticle=async(req,res)=>{
             status,
             readTime
         }
-        const author=Article.findById(articleId).select('author');
-        if(author.toString()!==req.user.userId){
+        const author=await Article.findById(articleId).select('author');
+        if(author.author.toString()!==req.user.userId){
             return res.status(403).json({message:"Unauthorized to update this article"});
         }
         const article=await Article.findByIdAndUpdate(articleId,data);

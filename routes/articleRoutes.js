@@ -27,5 +27,5 @@ router.post('/article/:slug/clap',clapArticle);
 router.get('/article/user/articles',getUserArticles);
 router.post('/article/:slug/save',toggleSavedArticle);
 router.delete('/article/delete/:id',deleteArticle);
-router.put('/article/update/:id',postArticleLimiter,updateArticle);
+router.put('/article/update/:id',updateArticle);
 module.exports=router;
