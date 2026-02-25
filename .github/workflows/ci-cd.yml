@@ -29,5 +29,5 @@ jobs:
               run: |
                 docker run -d -p 3101:3101 \
                 --name campus-connect-backend \
-                --env-file /home/ubuntu/.env \
+                --env-file /home/.env \
                 bennyhinnbezawada/campus-connect-backend:latest
