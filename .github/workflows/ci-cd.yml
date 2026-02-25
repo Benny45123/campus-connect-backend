@@ -1,0 +1,33 @@
+name: Deploy Node app to AWS EC2
+
+on:
+    push:
+        branches: [main]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Log in to Docker Hub
+              run : docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD}}
+            - name: Build Docker image
+              run : docker build -t bennyhinnbezawada/campus-connect-backend:latest .
+            - name: Push Docker image to Docker Hub
+              run : docker push bennyhinnbezawada/campus-connect-backend:latest
+    deploy:
+        needs: build
+        runs-on: self-hosted
+        steps:
+            - name: Pull image from Docker Hub
+              run : docker pull bennyhinnbezawada/campus-connect-backend:latest
+            - name: Stop existing container
+              run : docker stop campus-connect-backend || true
+            - name: Remove existing container
+              run : docker rm campus-connect-backend || true
+            - name: Run new container
+              run: |
+                docker run -d -p 3101:3101 \
+                --name campus-connect-backend \
+                --env-file /home/ubuntu/.env \
+                bennyhinnbezawada/campus-connect-backend:latest
