@@ -27,7 +27,7 @@ jobs:
               run : docker rm campus-connect-backend || true
             - name: Run new container
               run: |
-                docker run -d -p 3101:3101 \
+                docker run -d -p 443:3101 \
                 --name campus-connect-backend \
                 --env-file /home/ubuntu/home/.env \
                 bennyhinnbezawada/campus-connect-backend:latest
