@@ -1,101 +1,266 @@
-# 🚀 Campus Connect Backend
-### *The high-performance engine powering community collaboration.*
+<div align="center">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
-  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
-  <img src="https://img.shields.io/badge/MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonecw&logoColor=white" />
-  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
-  <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" />
-</p>
+<br/>
+
+```
+ ██████╗ █████╗ ███╗   ███╗██████╗ ██╗   ██╗███████╗
+██╔════╝██╔══██╗████╗ ████║██╔══██╗██║   ██║██╔════╝
+██║     ███████║██╔████╔██║██████╔╝██║   ██║███████╗
+██║     ██╔══██║██║╚██╔╝██║██╔═══╝ ██║   ██║╚════██║
+╚██████╗██║  ██║██║ ╚═╝ ██║██║     ╚██████╔╝███████║
+ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝      ╚═════╝ ╚══════╝
+       C O N N E C T  —  B A C K E N D  A P I
+```
+
+### *The high-performance engine powering community collaboration*
+
+<br/>
+
+![Node.js](https://img.shields.io/badge/Node.js_18+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![AWS EC2](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+
+<br/>
+
+![Commits](https://img.shields.io/github/commit-activity/t/Benny45123/campus-connect-backend?style=flat-square&color=00d4ff&label=commits)
+![Last Commit](https://img.shields.io/github/last-commit/Benny45123/campus-connect-backend?style=flat-square&color=7c3aed)
+![Repo Size](https://img.shields.io/github/repo-size/Benny45123/campus-connect-backend?style=flat-square&color=10b981)
+![Language](https://img.shields.io/github/languages/top/Benny45123/campus-connect-backend?style=flat-square&color=f59e0b)
+
+<br/>
+
+</div>
 
 ---
 
-## 🌐 Project Overview
-Campus Connect is a modular, scalable backend designed to handle community interactions, article management, and real-time content intelligence. This API is built with a focus on **security**, **speed**, and **automated deployment**.
+## 🌐 Overview
+
+**Campus Connect Backend** is a modular, production-ready REST API designed to handle community interactions, article management, and real-time content intelligence. Built with a relentless focus on **security**, **speed**, and **fully automated deployment**.
+
+> *Push to `main`. That's it. The pipeline handles the rest.*
 
 ---
 
-## ✨ Key Features & Technical Highlights
+## 📋 Table of Contents
+
+- [✨ Features](#-features)
+- [🏗 Architecture](#-architecture)
+- [🚢 DevOps & CI/CD](#-devops--cicd-pipeline)
+- [📁 Project Structure](#-project-structure)
+- [🚀 Getting Started](#-getting-started)
+- [⚙️ Environment Variables](#️-environment-variables)
+- [🛠 Tech Stack](#-tech-stack)
+
+---
+
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%">
 
 ### ⚡ Performance & Scalability
-* **Redis Caching:** Integrated caching layers for article search results to minimize database load.
-* **Mongoose Lean Queries:** Optimized read operations for faster JSON response times.
-* **Cloudinary Storage:** Managed cloud storage for high-resolution article assets.
+| Feature | Detail |
+|---|---|
+| 🔴 **Redis Caching** | Article search result caching |
+| 🍃 **Lean Queries** | Mongoose lean() for fast JSON |
+| ☁️ **Cloudinary** | Cloud media storage & delivery |
+
+</td>
+<td width="50%">
 
 ### 🔐 Security & Intelligence
-* **JWT & HttpOnly Cookies:** Secure, persistent authentication flow.
-* **Rate Limiting:** Prevents DDoS and brute-force attacks on sensitive auth routes.
-* **NLP Tagging:** Automated tag generation using `natural` and `node-rake` for content categorization.
+| Feature | Detail |
+|---|---|
+| 🔑 **JWT + Cookies** | HttpOnly secure auth flow |
+| 🛡 **Rate Limiting** | DDoS & brute-force protection |
+| 🧠 **NLP Tagging** | Auto-tags via `natural` + `node-rake` |
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 🚢 DevOps & Deployment Architecture
-This project implements a professional-grade **CI/CD Pipeline** to ensure seamless production updates.
+## 🏗 Architecture
 
-
-
-### ⚙️ CI/CD Workflow
-1.  **Containerization:** The entire backend is wrapped in a multi-stage **Docker** build for environment consistency.
-2.  **GitHub Self-Hosted Runner:** Deployment is orchestrated via a self-hosted runner on the **AWS EC2** instance, allowing for secure, internal execution of deployment scripts.
-3.  **Automated Pipeline:** On every push to `main`, the runner pulls the latest code, builds the Docker image, and restarts the containerized service.
-
-### 🛠 Production Problem Solving
-* **Nginx Reverse Proxy:** Successfully configured Nginx as a reverse proxy to handle **HTTPS/SSL termination**.
-* **Proxy Issue Fixes:** Resolved common production "502 Bad Gateway" and header-forwarding issues (e.g., `X-Forwarded-For`) to ensure the backend correctly identifies client IPs behind the proxy.
-* **Zero-Downtime Strategy:** Implemented Docker-based restarts to maintain high availability during updates.
-
----
-
-## 🏗 Modular Structure
-```text
-├── config/             # Database and Redis configurations
-├── controllers/        # Business logic for routes
-├── middleware/         # Auth, Rate-limiting, and Error handlers
-├── models/             # Mongoose Schemas (User, Article, etc.)
-├── routes/             # Express Route definitions
-├── utils/              # NLP Tagging and Cloudinary helpers
-└── Dockerfile          # Production container configuration
 ```
-# 🚀 Getting Started
+┌─────────────────────────────────────────────────────────────┐
+│                        CLIENT REQUEST                        │
+└──────────────────────────┬──────────────────────────────────┘
+                           │  HTTPS
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│              NGINX  (Reverse Proxy + SSL/TLS)                │
+│         ✦ SSL Termination   ✦ X-Forwarded-For               │
+└──────────────────────────┬──────────────────────────────────┘
+                           │  HTTP (internal)
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│               DOCKER CONTAINER  :5000                        │
+│  ┌──────────┐  ┌───────────┐  ┌─────────┐  ┌───────────┐  │
+│  │  Routes  │→ │Controllers│→ │Services │→ │  Models   │  │
+│  └──────────┘  └───────────┘  └─────────┘  └─────┬─────┘  │
+│                                                    │         │
+│  ┌─────────────────────┐   ┌──────────────────┐   │         │
+│  │  Redis Cache Layer  │   │  MongoDB Atlas   │ ◄─┘         │
+│  └─────────────────────┘   └──────────────────┘             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🚢 DevOps & CI/CD Pipeline
+
+```
+  Developer                GitHub                  AWS EC2
+     │                       │                        │
+     │──── git push main ────▶│                        │
+     │                       │── trigger workflow ────▶│
+     │                       │                        │── pull latest code
+     │                       │                        │── docker build
+     │                       │                        │── docker compose up
+     │                       │◀─── job complete ──────│
+     │◀─── ✅ deployed ───────│                        │
+```
+
+### ⚙️ Pipeline Steps
+
+**`Step 1` — Containerization**
+> The entire backend is wrapped in a **multi-stage Docker** build. Consistent environments from development all the way to production — no configuration drift.
+
+**`Step 2` — Self-Hosted GitHub Runner**
+> A self-hosted runner sits directly on the **AWS EC2** instance. Deployment scripts execute internally, keeping secrets and infrastructure fully private.
+
+**`Step 3` — Automated Push-to-Deploy**
+> Every push to `main` triggers the pipeline: pull code → rebuild Docker image → restart container. Zero manual SSH required.
+
+**`Step 4` — Production Hardening**
+> Nginx acts as a reverse proxy handling **HTTPS/SSL termination**, resolving 502 Bad Gateway errors, and correctly forwarding `X-Forwarded-For` headers for real IP detection behind the proxy.
+
+---
+
+## 📁 Project Structure
+
+```
+campus-connect-backend/
+│
+├── 📁 .github/
+│   └── 📁 workflows/          # ⚙️  CI/CD pipeline definitions
+│
+├── 📁 config/                 # 🔧  DB & Redis connection configs
+├── 📁 controllers/            # 🧠  Business logic for each route
+├── 📁 middleware/             # 🛡️  Auth, Rate-limiting, Error handlers
+├── 📁 models/                 # 📐  Mongoose schemas (User, Article…)
+├── 📁 routes/                 # 🗺️  Express route definitions
+├── 📁 services/               # ⚡  Core service abstractions
+├── 📁 utils/                  # 🔨  NLP tagging & Cloudinary helpers
+│
+├── 🐳 Dockerfile              # Multi-stage production container
+├── ⚙️  app.js                 # Application entry point
+├── 🧪 app.test.js             # Test suite
+└── 📦 package.json            # Dependencies & scripts
+```
+
+---
+
+## 🚀 Getting Started
+
 ### Prerequisites
 
-    Docker & Docker Compose
+- 🐳 Docker & Docker Compose
+- 🟢 Node.js 18+
+- 📄 `.env` file configured (see below)
 
-    Node.js 18+
+### Installation
 
-    Environment Variables (.env)
+**1. Clone the repository**
 
-### Installation & Local Setup
+```bash
+git clone https://github.com/Benny45123/campus-connect-backend.git
+cd campus-connect-backend
+```
 
-    Clone the repository:
-    Bash
+**2. Set up environment variables**
 
-    git clone [https://github.com/Benny45123/campus-connect-backend.git](https://github.com/Benny45123/campus-connect-backend.git)
-    cd campus-connect-backend
+```bash
+cp .env.example .env
+# Fill in your secrets (MongoDB URI, Redis URL, JWT secret, Cloudinary keys)
+```
 
-    Run with Docker:
-    Bash
+**3. Run with Docker**
 
-    docker compose up --build
+```bash
+docker compose up --build
+```
 
-    The server will be available at http://localhost:5000
+> ✅ Server live at **`http://localhost:5000`**
 
-### 🛠 Tech Stack Details
+---
 
-    Runtime: Node.js (Express.js)
+## ⚙️ Environment Variables
 
-    Database: MongoDB Atlas (NoSQL)
+```env
+# Server
+PORT=5000
+NODE_ENV=production
 
-    Cache: Redis
+# Database
+MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/campus-connect
 
-    Media: Cloudinary API
+# Cache
+REDIS_URL=redis://localhost:6379
 
-    Cloud: AWS EC2 (Ubuntu)
+# Auth
+JWT_SECRET=your_super_secret_key
+JWT_EXPIRES_IN=7d
 
-    Proxy: Nginx
+# Media
+CLOUDINARY_CLOUD_NAME=your_cloud
+CLOUDINARY_API_KEY=your_key
+CLOUDINARY_API_SECRET=your_secret
+```
 
-    CI/CD: GitHub Actions (Self-Hosted Runner)
+---
+
+## 🛠 Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| **Runtime** | Node.js 18 + Express.js | HTTP server & routing |
+| **Database** | MongoDB Atlas | NoSQL document storage |
+| **Cache** | Redis | Search result caching |
+| **Media** | Cloudinary API | Image upload & CDN delivery |
+| **Auth** | JWT + HttpOnly Cookies | Secure session management |
+| **NLP** | `natural` + `node-rake` | Automated content tagging |
+| **Cloud** | AWS EC2 (Ubuntu) | Production hosting |
+| **Proxy** | Nginx | Reverse proxy + SSL |
+| **CI/CD** | GitHub Actions | Automated deployments |
+| **Containers** | Docker + Compose | Environment isolation |
+
+---
+
+<div align="center">
+
+### 🔗 Links
+
+[![GitHub Repo](https://img.shields.io/badge/GitHub-campus--connect--backend-181717?style=for-the-badge&logo=github)](https://github.com/Benny45123/campus-connect-backend)
+
+<br/>
+
+*Built with ⚡ by [Benny45123](https://github.com/Benny45123)*
+
+<br/>
+
+```
+  ╔═══════════════════════════════╗
+  ║  production · secure · fast   ║
+  ╚═══════════════════════════════╝
+```
+
+</div>
