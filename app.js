@@ -24,7 +24,9 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 });
 const authRoutes=require('./routes/authRoutes');
 
-
+app.get('/',(req,res)=>{
+    res.send('Welcome to Campus Connect API EC2 check');
+});
 
 app.set('trust proxy', 1); // ensure only the user is blocked not ip
 
