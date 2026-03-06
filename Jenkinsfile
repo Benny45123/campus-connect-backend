@@ -59,12 +59,13 @@ pipeline{
         }
         stage('Run Latest Container'){
             steps{
-                sh "|
+                sh """
          docker run -d -p 3101:3101 \
          --name campus-connect-backend \
          --env-file .env \
          --restart unless-stopped \
-          bennyhinnbezawada/campus-connect-backend:latest"
+          bennyhinnbezawada/campus-connect-backend:latest
+                """
             }
         }
 
