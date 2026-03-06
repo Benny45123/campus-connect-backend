@@ -6,7 +6,7 @@ pipeline{
         SECRET_KEY= credentials('secret_key')
         CLOUDINARY_API_KEY = credentials('cloudinary_api_key')
         CLOUDINARY_API_SECRET = credentials('cloudinary_api_secret')
-        CLOUDINARY_API_NAME = credentials('cloudinary_api_name')
+        CLOUDINARY_CLOUD_NAME = credentials('cloudinary_cloud_name')
         REDIS_HOST = credentials('redis_host')
         REDIS_PORT = credentials('redis_port')
         REDIS_PASSWORD = credentials('redis_password')
@@ -21,7 +21,7 @@ pipeline{
                 SECRET_KEY=${SECRET_KEY}
                 CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
                 CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
-                CLOUDINARY_API_NAME=${CLOUDINARY_API_NAME}
+                CLOUDINARY_API_NAME=${CLOUDINARY_CLOUD_NAME}
                 REDIS_HOST=${REDIS_HOST}
                 REDIS_PORT=${REDIS_PORT}
                 REDIS_PASSWORD=${REDIS_PASSWORD}
