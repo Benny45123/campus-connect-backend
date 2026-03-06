@@ -7,7 +7,6 @@ const dotenv=require('dotenv');
 const articleRoutes=require('./routes/articleRoutes');
 const {authenticateToken}=require('./services/Authentication');
 const {getSavedArticles}=require('./controllers/socialFeatures');
-const rateLimit=require('express-rate-limit');
 require('./config/redis');
 dotenv.config();
 app.use(express.json());
