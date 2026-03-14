@@ -15,17 +15,22 @@ const upload=multer({storage:multer.memoryStorage()});
 
 const postArticleLimiter=rateLimit({
     windowMs:60*60*1000, // 1 hour
-    max:5, // limit each IP to 5 article posts per windowMs
+    max:20, // limit each IP to 5 article posts per windowMs
     message:{message:"Too many articles posted from this IP, please try again after an hour"}
 });
 
-router.post('/article/post',postArticleLimiter,postArticle);
-router.post('/article/upload-image',postArticleLimiter,upload.single("image"),uploadImage);
-router.get('/article/search',findArticle);
-router.get('/article/:slug',findSingleArticle);
-router.post('/article/:slug/clap',clapArticle);
-router.get('/article/user/articles',getUserArticles);
-router.post('/article/:slug/save',toggleSavedArticle);
-router.delete('/article/delete/:id',deleteArticle);
-router.put('/article/update/:id',updateArticle);
+router.post('/article/post', postArticleLimiter, postArticle);
+router.post('/article/upload-image', postArticleLimiter, upload.single("image"), uploadImage);
+router.get('/article/search', findArticle);
+
+// ── Static/specific routes MUST come before /:slug ──────────────────────────
+router.get('/article/user/articles', getUserArticles);   // ← moved UP
+router.delete('/article/delete/:id', deleteArticle);     // ← moved UP
+router.put('/article/update/:id', updateArticle);        
+
+// ── Dynamic :slug route LAST ─────────────────────────────────────────────────
+router.get('/article/:slug', findSingleArticle);
+router.post('/article/:slug/clap', clapArticle);
+router.post('/article/:slug/save', toggleSavedArticle);
+
 module.exports=router;

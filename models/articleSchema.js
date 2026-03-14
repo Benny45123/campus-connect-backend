@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 const blockSchema=new mongoose.Schema({
     type:{
         type:String,
-        enum:['heading','paragraph','image','code','quote'],
+        enum:['heading','paragraph','image','code','quote','links'],
         required:true
     },
     data: mongoose.Schema.Types.Mixed
