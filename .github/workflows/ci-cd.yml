@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Login to DockerHub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: Build Docker Image
         run: docker build -t bennyhinnbezawada/campus-connect-backend:latest .
       - name: Push Docker Image
@@ -31,6 +31,6 @@ jobs:
         run: |
          docker run -d -p 3101:3101 \
          --name campus-connect-backend \
-         --env-file /home/ubuntu/.env \
+         --env-file /home/ubuntu/campus/.env \
          --restart unless-stopped \
           bennyhinnbezawada/campus-connect-backend:latest
