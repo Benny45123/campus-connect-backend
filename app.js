@@ -5,13 +5,16 @@ const cors=require('cors');
 const mongoose=require('mongoose');
 const dotenv=require('dotenv');
 const articleRoutes=require('./routes/articleRoutes');
+const userRoutes = require('./routes/userRoutes'); 
 const {authenticateToken}=require('./services/Authentication');
 const {getSavedArticles}=require('./controllers/socialFeatures');
 require('./config/redis');
 dotenv.config();
+app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:[`https://campus-connect-i4hy.vercel.app`,`https://campus-connect-i4hy-git-main-beazawada-bennyhinns-projects.vercel.app`,`https://campus-connect-i4hy-9dcv2udm1-beazawada-bennyhinns-projects.vercel.app`],
+app.use(cors({origin:[`https://campus-connect-i4hy.vercel.app`,`https://campus-connect-i4hy-git-main-beazawada-bennyhinns-projects.vercel.app`,`https://campus-connect-i4hy-9dcv2udm1-beazawada-bennyhinns-projects.vercel.app`,"http://localhost:5173"],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -41,6 +44,9 @@ app.post('/api/logout',(req,res)=>{
     res.status(200).json({message:"Logout successful"});
 })
 app.get('/api/library/saved',getSavedArticles);
+
+
+app.use('/api/user',userRoutes);
 app.use('/api',articleRoutes);
 app.get('/api',(req, res) => {
     res.send('API is running...');
@@ -48,5 +54,5 @@ app.get('/api',(req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`App is running on port ${PORT}`);
+    console.log(`app is running on port ${PORT}`);
 });

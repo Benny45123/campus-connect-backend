@@ -4,7 +4,7 @@ const User = require('../models/userSchema');
 const findSingleArticle = async(req,res)=>{
     try{
         const {slug}=req.params;
-        const article = await Article.findOne({slug,status:'published'}).populate('author','userName bio profilePictureUrl').lean();
+        const article = await Article.findOne({slug,status:'published'}).populate('author','name bio').lean();
         if (!article){
             return  res.status(404).json({message:"Article not found"});
         }
